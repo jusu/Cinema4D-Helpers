@@ -16,3 +16,12 @@ Receive data from an external program thru a UDP socket.
 
         echo position 100 -100 100 | nc -u localhost 16000
 
+
+02 adding keyframes from python
+-------------------------------
+
+Add keyframes easily with:
+
+        helpers.addKey(o, c4d.ID_BASEOBJECT_REL_POSITION)
+
+
