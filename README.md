@@ -14,7 +14,7 @@ Receive data from an external program thru a UDP socket.
 
 - Send some test data to UDP port 16000 using the Max example patch, or a program such as netcat:
 
-        echo position 100 -100 100 | nc -u localhost 16000
+    echo position 100 -100 100 | nc -u localhost 16000
 
 
 02 adding keyframes from python
@@ -22,6 +22,5 @@ Receive data from an external program thru a UDP socket.
 
 Add keyframes easily with:
 
-        helpers.addKey(o, c4d.ID_BASEOBJECT_REL_POSITION)
-
+    helpers.addKey(o, c4d.ID_BASEOBJECT_REL_POSITION)
 
