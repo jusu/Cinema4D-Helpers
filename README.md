@@ -24,3 +24,5 @@ Add keyframes easily with:
 
     helpers.addKey(o, c4d.ID_BASEOBJECT_REL_POSITION)
 
+
+[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/fb131a1b0b63771e180734b6d263eb97 "githalytics.com")](http://githalytics.com/jusu/Cinema4D-Helpers)
