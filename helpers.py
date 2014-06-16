@@ -4,6 +4,13 @@
 
 import c4d
 import socket, time, threading
+from c4d import gui
+
+#
+# ObjectIds
+#
+
+Ocloner = 1018544
 
 #
 # Misc
@@ -148,3 +155,58 @@ def listen(name, port, handlers):
 
     t = threading.Thread(target=task)
     t.start()
+
+#
+# doc helpers
+#
+
+class Dock:
+    def __init__(self, doc):
+        self.doc = doc
+    
+    def addMaterial(self, obj, materialName):
+        mat = self.doc.SearchMaterial(materialName)
+
+        ttag = c4d.BaseTag(c4d.Ttexture)
+        ttag.SetMaterial(mat)
+
+        obj.InsertTag(ttag)
+
+#
+# dialog helpers
+#
+
+GROUP_ID1=1000
+BUTTON1=1001
+BUTTON2=1002
+
+class RunDlg(gui.GeDialog):
+   
+    def CreateLayout(self):
+        #creat the layout of the dialog
+        self.GroupBegin(GROUP_ID1, c4d.BFH_SCALEFIT, 2, 1)
+        self.AddButton(BUTTON1, c4d.BFH_SCALE, name="Run")
+        self.AddButton(BUTTON2, c4d.BFH_SCALE, name="Close")
+        self.GroupEnd()
+        return True
+   
+    def InitValues(self):
+        #initiate the gadgets with values
+        return True
+   
+    def Command(self, id, msg):
+        #handle user input
+        if id==BUTTON1:
+            self.cb()
+        elif id==BUTTON2:
+            self.Close()
+        return True
+
+def CreateRunDlg(title, callback):
+    """Simple helper to launch a dialog with 'Run' button. Pressing
+    this button runs the callback function."""
+    dlg = RunDlg()
+    dlg.cb = callback
+    dlg.Open(c4d.DLG_TYPE_ASYNC, defaultw=200, defaulth=50)
+    dlg.SetTitle(title)
+    return dlg
